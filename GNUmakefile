@@ -15,7 +15,7 @@ all-hdd: Fluorine.hdd
 
 .PHONY: run
 run: Fluorine.iso
-	qemu-system-$(ARCH) -M q35 -m 2G -cdrom Fluorine.iso -boot d
+	qemu-system-$(ARCH) -M q35 -m 2G -cdrom Fluorine.iso -boot d -monitor stdio
 
 .PHONY: run-uefi
 run-uefi: ovmf-$(EFI_ARCH) Fluorine.iso
