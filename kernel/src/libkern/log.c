@@ -30,10 +30,45 @@
  *
  */
 
-#ifndef LOG_H
-#define LOG_H
-#include <stdarg.h>
+#include <libkern/log.h>
+#include <libkern/string.h>
+#include <limine.h>
 
-void printf(char* fmt, ...);
+static volatile struct limine_terminal_request term_req = {
+    .id = LIMINE_TERMINAL_REQUEST,
+    .revision = 0
+};
 
-#endif
+
+static struct limine_terminal* terminal = NULL;
+
+
+static void puts(const char* str) {
+    if (terminal == NULL) {
+        terminal = term_req.response->terminals[0];
+    }
+
+    term_req.response->write(terminal, str, strlen(str));
+}
+
+
+void printf(char* fmt, ...) {
+    va_list ap;
+    va_start(ap, fmt);
+
+    char* ptr;
+
+    for (ptr = fmt; *ptr != '\0'; ++ptr) {
+        if (*ptr == '%') {
+            ++ptr;
+            switch (*ptr) {
+                case 's':
+                    puts(va_arg(ap, char*));
+                    break;
+            }
+        } else {
+            char terminated[2] = {*ptr, 0};
+            puts(terminated);
+        }
+    }
+}
