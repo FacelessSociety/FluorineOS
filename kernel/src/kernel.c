@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <limine.h>
+#include <arch/interrupts/IDT.h>
 
 static volatile struct limine_terminal_request terminal_request = {
     .id = LIMINE_TERMINAL_REQUEST,
@@ -15,7 +16,6 @@ static void done(void) {
 
 // The following will be our kernel's entry point.
 void _start(void) {
-    struct limine_terminal *terminal = terminal_request.response->terminals[0];
-    terminal_request.response->write(terminal, "Hello World!", 12);
+    idt_install();
     done();
 }
