@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <limine.h>
 
-#include "libkern/log.h"
+#include <libkern/log.h>
 
 static void done(void) {
     for (;;) {
