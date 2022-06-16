@@ -16,7 +16,7 @@ do
 	    -mno-red-zone        \
 	    -mcmodel=kernel      \
 	    -MMD                 \
-        -I src               \
+        -Iinclude            \
         -c                   \
         -o $i.o
 done

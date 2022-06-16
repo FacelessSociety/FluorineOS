@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <limine.h>
-
+#include <arch/interrupts/IDT.h>
 #include <libkern/log.h>
 
 static void done(void) {
@@ -13,5 +13,6 @@ static void done(void) {
 // The following will be our kernel's entry point.
 void _start(void) {
     printf("%s\n\r%x\n%d\n%c", "string string", 0xdeadbeef, 1234, 'c');
+    idt_install();
     done();
 }
