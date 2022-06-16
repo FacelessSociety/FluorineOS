@@ -2,11 +2,7 @@
 #include <stddef.h>
 #include <limine.h>
 #include <arch/interrupts/IDT.h>
-
-static volatile struct limine_terminal_request terminal_request = {
-    .id = LIMINE_TERMINAL_REQUEST,
-    .revision = 0
-};
+#include <libkern/log.h>
 
 static void done(void) {
     for (;;) {
@@ -16,6 +12,7 @@ static void done(void) {
 
 // The following will be our kernel's entry point.
 void _start(void) {
+    printf("%s\n\r%x\n%d\n%c", "string string", 0xdeadbeef, 1234, 'c');
     idt_install();
     done();
 }

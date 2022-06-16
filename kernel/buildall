@@ -2,7 +2,7 @@
 
 for i in $(find ./ -type f -name "*.c")
 do
-    gcc $i -I \
+    gcc $i -Iinclude/ \
 	    -std=gnu11           \
 	    -ffreestanding       \
 	    -fno-stack-protector \
