@@ -44,9 +44,9 @@ void printf(char* fmt, ...){
 		// if not a control
 		while(*traverse != '%'){
 			putchar(*traverse);
+			if(*traverse == '\n') puts("\n");
 			traverse++;
 		}
-		if(*traverse == '\0') return;
 
 		traverse++;
 
