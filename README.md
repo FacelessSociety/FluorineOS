@@ -8,7 +8,7 @@
 
 > FluorineOS, an OS that gives you freedom!
 
-## Install
+## Build
 
 ```sh
 make
