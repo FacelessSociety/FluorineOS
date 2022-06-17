@@ -32,6 +32,7 @@
 
 
 #include <arch/interrupts/IDT.h>
+#include <arch/interrupts/exceptions.h>
 
 #define TRAP_GATE_FLAGS 0x8F
 #define INT_GATE_FLAGS 0x8E
@@ -60,7 +61,34 @@ static void set_idt_desc(uint8_t vector, void* isr, uint32_t flags) {
 }
 
 
+static void(*exceptions[])(void) = {
+    divide_error,
+    debug_exception,
+    general_protection_fault,
+    general_protection_fault,
+    overflow,
+    bound_range_exceeded,
+    invalid_opcode,
+    no_mathcoprocessor,
+    double_fault,
+    general_protection_fault,
+    invalid_tss,
+    segment_not_present,
+    stack_segment_fault,
+    general_protection_fault,
+    page_fault
+};
+
+
+static void setup_exceptions(void) {
+    for (uint8_t i = 0; i < 0xE; ++i) {
+        set_idt_desc(i, exceptions[i], TRAP_GATE_FLAGS);
+    }
+}
+
+
 void idt_install(void) {
+    setup_exceptions();
     idtr.limit = sizeof(struct InterruptGateDescriptor) * 256 - 1;
     idtr.base = (uint64_t)&idt;
     __asm__ __volatile__("lidt %0" :: "m" (idtr));
