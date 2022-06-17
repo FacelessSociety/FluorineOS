@@ -58,6 +58,16 @@ void printf(char* fmt, ...) {
 
     char* ptr;
 
+    if (memcmp(fmt, KINFO, strlen(KINFO))) {
+        puts(KINFO);
+        fmt += strlen(KINFO);
+    }
+
+    if (memcmp(fmt, KERR, strlen(KERR))) {
+        puts(KERR);
+        fmt += strlen(KERR);
+    }
+
     for (ptr = fmt; *ptr != '\0'; ++ptr) {
         if (*ptr == '%') {
             ++ptr;

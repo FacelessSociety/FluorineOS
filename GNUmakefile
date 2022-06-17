@@ -53,6 +53,7 @@ Fluorine.iso: limine kernel
 		iso_root -o Fluorine.iso
 	limine/limine-deploy Fluorine.iso
 	rm -rf iso_root
+	bash kernel/clean
 
 Fluorine.hdd: limine kernel
 	rm -f Fluorine.hdd

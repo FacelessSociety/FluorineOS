@@ -38,6 +38,6 @@ static void done(void) {
 // The following will be our kernel's entry point.
 void _start(void) {
     idt_install();
-    printf("IDT installed!");
+    printf(KINFO "IDT installed!");
     done();
 }

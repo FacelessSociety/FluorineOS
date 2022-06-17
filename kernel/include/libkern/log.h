@@ -34,6 +34,9 @@
 #define LOG_H
 #include <stdarg.h>
 
+#define KINFO "\e[0;32m"
+#define KERR "\e[0;31m"
+
 void printf(char* fmt, ...);
 
 #endif
