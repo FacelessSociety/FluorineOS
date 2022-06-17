@@ -18,7 +18,7 @@ make
 
 👤 **Ian Marco Moffett**
 
-* Github: [@5purious](https://github.com/5purious)
+* Github: [@Ian-Marco-Moffett](https://github.com/Ian-Marco-Moffett)
 
 ## Show your support
 
