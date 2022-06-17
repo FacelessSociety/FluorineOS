@@ -36,8 +36,9 @@
 
 
 #include <stddef.h>
+#include <stdbool.h>
 
 size_t strlen(const char* str);
-
+bool memcmp(const char* str1, const char* str2, size_t n);
 
 #endif

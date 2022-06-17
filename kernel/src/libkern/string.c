@@ -25,7 +25,7 @@
 /*
  *  People who worked on this file:
  *
- *  Ian Marco Moffett (5purious).
+ *  Ian Marco Moffett
  *
  */
 
@@ -36,5 +36,19 @@
 size_t strlen(const char* str) {
     size_t i = 0;
     while (str[i++]);
-    return i;
+    return i - 1;
+}
+
+
+bool memcmp(const char* str1, const char* str2, size_t n) {
+    while (*str1 && *str2) {
+        if (*str1 != *str2) {
+            return false;
+        }
+
+        ++str1;
+        ++str2;
+    }
+
+    return true;
 }
